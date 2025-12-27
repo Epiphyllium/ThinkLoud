@@ -2,12 +2,46 @@ import uuid
 import re
 import json
 import os
+import socket
+import io
+import tempfile
+import shutil
+try:
+    import qrcode
+except ImportError:
+    qrcode = None
+try:
+    import whisper
+except ImportError:
+    whisper = None
+
+from datetime import datetime
 from typing import Dict, Optional, List, Tuple
-from fastapi import FastAPI, HTTPException
+from fastapi import FastAPI, HTTPException, UploadFile, File
+from fastapi.middleware.cors import CORSMiddleware
+from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel
 from llm_service import infer_gender_with_llm, mock_llm_check_same_role, correct_pronouns_with_llm
 
 app = FastAPI(title="ThinkLoud Demo Backend")
+
+# Initialize Whisper model (lazy loading or global)
+WHISPER_MODEL = None
+
+def get_whisper_model():
+    global WHISPER_MODEL
+    if WHISPER_MODEL is None and whisper:
+        print("Loading Whisper model (base)...")
+        WHISPER_MODEL = whisper.load_model("base")
+    return WHISPER_MODEL
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 # --- 数据持久化层 ---
 class JSONDatabase:
@@ -104,17 +138,29 @@ db = JSONDatabase()
 
 class EntryProcessRequest(BaseModel):
     text: str
+    save: bool = True
+
+class EntrySaveProcessedRequest(BaseModel):
+    text: str
+    modified_text: str
+    extracted_roles: Optional[List[dict]] = None
+    title: Optional[str] = None
+    summary: Optional[str] = None
+    tags: Optional[List[str]] = None
+    save: bool = True
 
 class EntryProcessResponse(BaseModel):
     entry_id: str
     modified_text: str
     role_id: str
     extracted_roles: Optional[List[dict]] = None
+    date: Optional[str] = None
 
 class EntryUpdateRequest(BaseModel):
     entry_id: str
     original_input: Optional[str] = None
     modified_text: Optional[str] = None
+    summary: Optional[str] = None
     role_id: Optional[str] = None
     skip_llm_inference: bool = False
 
@@ -123,6 +169,15 @@ class RoleUpdateRequest(BaseModel):
     name: Optional[str] = None
     gender: Optional[str] = None
     nickname: Optional[str] = None
+
+class RoleInfo(BaseModel):
+    name: str
+    gender: Optional[str] = None
+    nickname: Optional[str] = None
+    is_new: Optional[bool] = False
+
+class RoleBatchCreateRequest(BaseModel):
+    roles: List[RoleInfo]
 
 class CommonResponse(BaseModel):
     success: bool
@@ -305,19 +360,27 @@ def process_entry_without_llm(request: EntryProcessRequest):
 
     # 保存 Entry
     new_entry_id = str(uuid.uuid4())
-    entry_data = {
-        "entry_id": new_entry_id,
-        "role_id": target_role_id,
-        "original_input": original_input,
-        "modified_text": modified_text
-    }
-    db.add_entry(entry_data)
+    today_date = datetime.now().strftime("%Y-%m-%d")
+    if request.save:
+        entry_data = {
+            "entry_id": new_entry_id,
+            "role_id": target_role_id,
+            "original_input": original_input,
+            "modified_text": modified_text,
+            "title": request.title,
+            "summary": request.summary,
+            "tags": request.tags,
+            "created_at": datetime.now().isoformat(),
+            "date": today_date
+        }
+        db.add_entry(entry_data)
     
     return {
         "entry_id": new_entry_id,
         "modified_text": modified_text,
         "role_id": target_role_id,
-        "extracted_roles": None # 显式返回 None 或空列表
+        "extracted_roles": None, # 显式返回 None 或空列表
+        "date": today_date
     }
 
 @app.post("/entry/process_with_llm", response_model=EntryProcessResponse)
@@ -397,11 +460,14 @@ def process_entry_with_llm(request: EntryProcessRequest):
 
     # 保存 Entry
     new_entry_id = str(uuid.uuid4())
+    today_date = datetime.now().strftime("%Y-%m-%d")
     entry_data = {
         "entry_id": new_entry_id,
         "role_id": target_role_id,
         "original_input": original_input,
-        "modified_text": modified_text
+        "modified_text": modified_text,
+        "created_at": datetime.now().isoformat(),
+        "date": today_date
     }
     db.add_entry(entry_data)
     
@@ -409,7 +475,95 @@ def process_entry_with_llm(request: EntryProcessRequest):
         "entry_id": new_entry_id,
         "modified_text": modified_text,
         "role_id": target_role_id,
-        "extracted_roles": extracted_roles
+        "extracted_roles": extracted_roles,
+        "date": today_date
+    }
+
+@app.post("/entry/save_processed", response_model=EntryProcessResponse)
+def save_processed_entry(request: EntrySaveProcessedRequest):
+    """
+    保存前端已完成 LLM 处理的 Entry：
+    1. 接收前端传来的 original_input, modified_text, extracted_roles
+    2. 执行角色关联逻辑 (与 process_with_llm 一致)
+    3. 保存 Entry
+    """
+    original_input = request.text
+    modified_text = request.modified_text
+    extracted_roles = request.extracted_roles
+    existing_roles = db.get_all_roles()
+    
+    target_role_id = None
+    
+    # 尝试使用 extracted_roles 提取的角色信息来确定 target_role_id
+    if extracted_roles:
+        first_role_info = extracted_roles[0]
+        name_to_find = first_role_info.get("name")
+        
+        # 在现有角色中查找
+        for role in existing_roles:
+            if role.get("name") == name_to_find or role.get("nickname") == name_to_find:
+                target_role_id = role["role_id"]
+                break
+        
+        # 如果没找到且 LLM 标记为新角色，或者只是没找到
+        if not target_role_id and name_to_find:
+            # 创建新角色
+            new_role_id = str(uuid.uuid4())
+            role_data = {
+                "role_id": new_role_id,
+                "name": name_to_find,
+                "gender": first_role_info.get("gender"), 
+                "nickname": None,
+                "context_summary": ""
+            }
+            db.add_role(role_data)
+            target_role_id = new_role_id
+            
+    # 如果 LLM 没提取到角色，回退到规则逻辑
+    if not target_role_id:
+        text_to_process = modified_text if modified_text != original_input else original_input
+        _, found_role_id = advanced_process_text(text_to_process, existing_roles)
+        target_role_id = found_role_id
+    
+    # 最终回退
+    if not target_role_id:
+        if not existing_roles:
+            new_role_id = str(uuid.uuid4())
+            role_data = {
+                "role_id": new_role_id,
+                "name": "Unknown",
+                "gender": None,
+                "nickname": None,
+                "context_summary": ""
+            }
+            db.add_role(role_data)
+            target_role_id = new_role_id
+        else:
+            target_role_id = existing_roles[0]["role_id"]
+
+    # 保存 Entry
+    new_entry_id = str(uuid.uuid4())
+    today_date = datetime.now().strftime("%Y-%m-%d")
+    if request.save:
+        entry_data = {
+            "entry_id": new_entry_id,
+            "role_id": target_role_id,
+            "original_input": original_input,
+            "modified_text": modified_text,
+            "title": request.title,
+            "summary": request.summary,
+            "tags": request.tags,
+            "created_at": datetime.now().isoformat(),
+            "date": today_date
+        }
+        db.add_entry(entry_data)
+    
+    return {
+        "entry_id": new_entry_id,
+        "modified_text": modified_text,
+        "role_id": target_role_id,
+        "extracted_roles": extracted_roles,
+        "date": today_date
     }
 
 @app.post("/entry/update", response_model=CommonResponse)
@@ -516,6 +670,9 @@ def update_entry(request: EntryUpdateRequest):
                             db.update_role(role_id, role_updates)
                             # print(f"Role {role_id} updated with {role_updates}")
 
+    if request.summary is not None:
+        updates["summary"] = request.summary
+
     if updates:
         db.update_entry(request.entry_id, updates)
         
@@ -551,6 +708,39 @@ def update_role(request: RoleUpdateRequest):
         
     return {"success": True, "message": "Role updated"}
 
+@app.post("/role/batch_create", response_model=CommonResponse)
+def batch_create_roles(request: RoleBatchCreateRequest):
+    """
+    批量创建角色 (用于前端 LLM 分析后的自动保存)
+    仅当角色名在数据库中不存在时创建
+    """
+    existing_roles = db.get_all_roles()
+    created_count = 0
+    
+    for new_role in request.roles:
+        # Check if exists by name or nickname
+        exists = False
+        for r in existing_roles:
+            if r.get("name") == new_role.name:
+                exists = True
+                break
+        
+        if not exists:
+            new_id = str(uuid.uuid4())
+            role_data = {
+                "role_id": new_id,
+                "name": new_role.name,
+                "gender": new_role.gender,
+                "nickname": new_role.nickname,
+                "context_summary": ""
+            }
+            db.add_role(role_data)
+            created_count += 1
+            # Update local list for next iteration checking
+            existing_roles.append(role_data)
+            
+    return {"success": True, "message": f"Created {created_count} new roles"}
+
 @app.get("/entry/render/{entry_id}", response_model=EntryRenderResponse)
 def render_entry(entry_id: str):
     """
@@ -572,11 +762,114 @@ def render_entry(entry_id: str):
     
     return {"rendered_text": rendered}
 
-@app.get("/")
+@app.get("/api/health")
 def health_check():
     return {"status": "running", "message": "ThinkLoud Backend Demo is Ready"}
 
+@app.get("/roles", response_model=List[dict])
+def get_roles():
+    """
+    Get all roles
+    """
+    return db.get_all_roles()
+
+@app.get("/entries", response_model=List[dict])
+def get_entries():
+    """
+    Get all entries
+    """
+    return list(db.entries.values())
+
+@app.post("/transcribe")
+async def transcribe_audio(file: UploadFile = File(...)):
+    """
+    接收音频文件并使用 Whisper 进行转录
+    """
+    if not whisper:
+        raise HTTPException(status_code=500, detail="Whisper library not installed on server.")
+    
+    # Save temp file
+    suffix = os.path.splitext(file.filename)[1]
+    if not suffix:
+        suffix = ".webm" # Default for browser recording
+        
+    with tempfile.NamedTemporaryFile(delete=False, suffix=suffix) as tmp:
+        shutil.copyfileobj(file.file, tmp)
+        tmp_path = tmp.name
+    
+    try:
+        model = get_whisper_model()
+        result = model.transcribe(tmp_path, language="zh") # Force Chinese
+        text = result["text"].strip()
+        return {"text": text}
+    except Exception as e:
+        print(f"Transcription error: {e}")
+        raise HTTPException(status_code=500, detail=str(e))
+    finally:
+        # Cleanup
+        if os.path.exists(tmp_path):
+            os.remove(tmp_path)
+
+# Mount static files (Frontend)
+# This must be the last route to avoid overriding API routes
+app.mount("/", StaticFiles(directory="front", html=True), name="static")
+
+def get_local_ip():
+    try:
+        # Create a dummy socket to connect to an external IP (doesn't actually send data)
+        s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+        s.connect(("8.8.8.8", 80))
+        ip = s.getsockname()[0]
+        s.close()
+        return ip
+    except Exception:
+        return "127.0.0.1"
+
+def print_qr_code(url):
+    if not qrcode:
+        print("qrcode module not found. Please install it with 'pip install qrcode'")
+        return
+
+    qr = qrcode.QRCode(
+        version=1,
+        error_correction=qrcode.constants.ERROR_CORRECT_L,
+        box_size=1,
+        border=1,
+    )
+    qr.add_data(url)
+    qr.make(fit=True)
+    
+    f = io.StringIO()
+    qr.print_ascii(out=f)
+    f.seek(0)
+    print("\n" + "="*50)
+    print(f"✨ 扫码体验 (Scan to visit):")
+    print(f"URL: {url}")
+    print("="*50)
+    print(f.read())
+    print("="*50 + "\n")
+
 if __name__ == "__main__":
     import uvicorn
+    
+    # Print QR Code
+    try:
+        local_ip = get_local_ip()
+        port = 8000
+        # Check if SSL certs exist
+        protocol = "http"
+        if os.path.exists("cert.pem") and os.path.exists("key.pem"):
+            protocol = "https"
+            
+        url = f"{protocol}://{local_ip}:{port}"
+        print_qr_code(url)
+    except Exception as e:
+        print(f"Failed to generate QR code: {e}")
+
     # 方便直接运行 python app.py 启动
-    uvicorn.run(app, host="0.0.0.0", port=8000)
+    if os.path.exists("cert.pem") and os.path.exists("key.pem"):
+        print("Starting server with SSL/TLS (HTTPS)...")
+        uvicorn.run(app, host="0.0.0.0", port=8000, ssl_keyfile="key.pem", ssl_certfile="cert.pem")
+    else:
+        print("Starting server in HTTP mode (No SSL certs found)...")
+        uvicorn.run(app, host="0.0.0.0", port=8000)

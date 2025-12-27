@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <meta name="theme-color" content="#4BA5FF">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <title>ThinkLoud</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap');
+
+        html {
+            height: 100%;
+        }
+
+        * {
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'PingFang SC', 'SF Pro Display', 'Inter', sans-serif;
+            overflow: hidden;
+        }
+
+        /* 动态渐变背景 */
+        .gradient-bg {
+            background: linear-gradient(135deg, #4BA5FF, #87E032);
+            background-size: 200% 200%;
+            animation: gradientShift 8s ease infinite;
+        }
+
+        @keyframes gradientShift {
+
+            0%,
+            100% {
+                background-position: 0% 50%;
+            }
+
+            50% {
+                background-position: 100% 50%;
+            }
+        }
+
+        /* 毛玻璃效果 */
+        .glass {
+            background: rgba(255, 255, 255, 0.4);
+            backdrop-filter: blur(30px);
+            -webkit-backdrop-filter: blur(30px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .glass-hover {
+            transition: all 150ms cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .glass-hover:hover {
+            background: rgba(255, 255, 255, 0.6);
+            transform: scale(1.05);
+        }
+
+        /* 录音涟漪效果 */
+        @keyframes ripple {
+            0% {
+                transform: translate(-50%, -50%) scale(1);
+                opacity: 0.6;
+            }
+
+            100% {
+                transform: translate(-50%, -50%) scale(2.5);
+                opacity: 0;
+            }
+        }
+
+        .ripple {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.6);
+            animation: ripple 2s infinite;
+        }
+
+        .ripple:nth-child(2) {
+            animation-delay: 0.5s;
+            opacity: 0.4;
+        }
+
+        .ripple:nth-child(3) {
+            animation-delay: 1s;
+            opacity: 0.3;
+        }
+
+        /* 声波动画 */
+        @keyframes wave {
+
+            0%,
+            100% {
+                height: 16px;
+            }
+
+            50% {
+                height: 32px;
+            }
+        }
+
+        .wave-bar {
+            width: 4px;
+            background: white;
+            border-radius: 2px;
+            animation: wave 0.8s ease-in-out infinite;
+        }
+
+        .wave-bar:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+
+        .wave-bar:nth-child(3) {
+            animation-delay: 0.4s;
+        }
+
+        .wave-bar:nth-child(4) {
+            animation-delay: 0.6s;
+        }
+
+        .wave-bar:nth-child(5) {
+            animation-delay: 0.8s;
+        }
+
+        /* 淡入淡出 */
+        .fade-out {
+            opacity: 0;
+            transition: opacity 300ms ease;
+        }
+
+        .fade-in {
+            opacity: 1;
+            transition: opacity 300ms ease;
+        }
+
+        /* 文本高亮 */
+        .highlight-name {
+            background: rgba(255, 255, 255, 0.3);
+            padding: 2px 6px;
+            border-radius: 4px;
+        }
+
+        /* 弹窗动画 */
+        @keyframes modalSlideUp {
+            from {
+                transform: translateY(20px);
+                opacity: 0;
+            }
+
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .modal-content {
+            animation: modalSlideUp 150ms cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        /* 禁用状态 */
+        .disabled {
+            opacity: 0.15;
+            pointer-events: none;
+        }
+
+        /* 文本编辑 */
+        .editable-text {
+            min-height: 100px;
+            outline: none;
+            cursor: text;
+        }
+
+        .editable-text:focus {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            padding: 16px;
+        }
+
+        /* 暂停动画 */
+        .paused .ripple,
+        .paused .wave-bar {
+            animation-play-state: paused !important;
+        }
+    </style>
+</head>
+
+<body class="gradient-bg w-screen h-screen supports-[height:100dvh]:h-[100dvh] overflow-hidden">
+
+    <!-- 全局 Logo -->
+    <img src="logo.png" alt="Logo"
+        class="fixed top-6 left-6 w-10 h-10 object-contain z-[60] pointer-events-none opacity-90">
+
+    <!-- 主容器 -->
+    <div class="w-full h-full flex flex-col items-center justify-between px-8 py-12">
+
+        <!-- 主视觉区域 (60%) -->
+        <div class="flex-[0.6] w-full flex items-center justify-center relative" id="mainVisual">
+            <!-- 静态麦克风图标 -->
+            <div id="micIcon" class="glass rounded-full p-8 glass-hover cursor-pointer">
+                <svg class="w-16 h-16 text-white" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M12 14c1.66 0 3-1.34 3-3V5c0-1.66-1.34-3-3-3S9 3.34 9 5v6c0 1.66 1.34 3 3 3z" />
+                    <path
+                        d="M17 11c0 2.76-2.24 5-5 5s-5-2.24-5-5H5c0 3.53 2.61 6.43 6 6.92V21h2v-3.08c3.39-.49 6-3.39 6-6.92h-2z" />
+                </svg>
+            </div>
+
+            <!-- 录音中：声波 + 涟漪 -->
+            <div id="recordingVisual" class="hidden relative">
+                <div class="glass rounded-full p-8">
+                    <div class="flex gap-1 items-center justify-center h-16 w-16">
+                        <div class="wave-bar"></div>
+                        <div class="wave-bar"></div>
+                        <div class="wave-bar"></div>
+                        <div class="wave-bar"></div>
+                        <div class="wave-bar"></div>
+                    </div>
+                </div>
+                <!-- 涟漪效果 -->
+                <div class="ripple"></div>
+                <div class="ripple"></div>
+                <div class="ripple"></div>
+            </div>
+        </div>
+
+        <!-- 信息引导区 (20%) -->
+        <div class="flex-[0.2] w-full" id="infoSection">
+            <div class="grid grid-cols-2 gap-8">
+                <!-- 左栏：插画占位 -->
+                <!-- <div class="flex items-center justify-center">
+                    <div class="w-24 h-24 glass rounded-full"></div>
+                </div> -->
+
+                <!-- 右栏：引导问题 -->
+                <!-- <div class="flex flex-col justify-center space-y-4 text-white">
+                    <p class="text-lg opacity-80">今天心情怎么样？</p>
+                    <p class="text-lg opacity-80">工作进展如何？</p>
+                    <p class="text-lg opacity-80">有什么新的想法？</p>
+                </div> -->
+            </div>
+        </div>
+
+        <!-- 录音中文本显示区 -->
+        <div id="transcriptSection" class="hidden flex-[0.4] w-full overflow-y-auto px-4">
+            <div id="transcriptText" class="text-white text-lg opacity-80 leading-relaxed editable-text"
+                contenteditable="false"></div>
+        </div>
+
+        <!-- 归档页面容器 (默认隐藏) -->
+        <div id="archiveSection" class="hidden absolute inset-0 z-40 flex flex-col bg-transparent backdrop-blur-xl">
+            <!-- 头部 -->
+            <div class="flex items-center justify-between pl-20 pr-8 py-6">
+                <h2 class="text-white text-2xl font-semibold opacity-90">档案库</h2>
+                <button id="closeArchiveBtn" class="p-2 glass rounded-full text-white opacity-80 hover:opacity-100">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                </button>
+            </div>
+
+            <!-- 列表区域 -->
+            <div id="archiveList" class="flex-1 overflow-y-auto px-8 pb-24 grid grid-cols-1 md:grid-cols-2 gap-4">
+                <!-- 归档卡片将在这里动态生成 -->
+            </div>
+        </div>
+
+        <!-- 归档详情全屏页 (默认隐藏) -->
+        <div id="archiveDetailSection" class="hidden absolute inset-0 z-50 flex flex-col bg-black/40 backdrop-blur-2xl">
+            <div class="flex items-center justify-between pl-20 pr-8 py-6">
+                <button id="backToArchiveBtn" class="flex items-center text-white opacity-80 hover:opacity-100 gap-2">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+                    </svg>
+                    <span>返回</span>
+                </button>
+                <button id="saveArchiveDetailBtn"
+                    class="px-4 py-2 glass rounded-full text-white text-sm opacity-80 hover:opacity-100">保存</button>
+            </div>
+            <div class="flex-1 overflow-y-auto px-8 pb-12">
+                <div id="archiveDetailContent"
+                    class="text-white text-lg opacity-90 leading-relaxed editable-text outline-none"
+                    contenteditable="true"></div>
+            </div>
+            <div class="px-8 py-6 text-white/50 text-sm flex justify-between items-center" id="archiveDetailMeta">
+                <!-- Meta info -->
+            </div>
+        </div>
+
+        <!-- 用户中心/人物库页面 (默认隐藏) -->
+        <div id="userProfileSection" class="hidden absolute inset-0 z-40 flex flex-col bg-transparent backdrop-blur-xl">
+            <!-- 头部 -->
+            <div class="flex items-center justify-between pl-20 pr-8 py-6">
+                <h2 id="profileTitle" class="text-white text-2xl font-semibold opacity-90">个人中心</h2>
+                <button id="closeProfileBtn" class="p-2 glass rounded-full text-white opacity-80 hover:opacity-100">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                </button>
+            </div>
+
+            <!-- 内容区域 -->
+            <div id="profileContent" class="flex-1 overflow-y-auto px-8 pb-24">
+                <!-- 动态内容 -->
+            </div>
+        </div>
+
+        <!-- 操作区 (20%) -->
+        <div class="flex-[0.2] w-full flex items-center justify-center gap-12" id="controlSection">
+            <!-- 左按钮 -->
+            <button id="leftBtn" class="glass rounded-full p-6 glass-hover" aria-label="档案库">
+                <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                    <path d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z" />
+                </svg>
+            </button>
+
+            <!-- 主按钮 -->
+            <button id="mainBtn" class="glass rounded-full p-8 glass-hover" aria-label="开录">
+                <div class="flex flex-col items-center gap-2">
+                    <svg id="mainBtnIcon" class="w-10 h-10 text-white" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M12 14c1.66 0 3-1.34 3-3V5c0-1.66-1.34-3-3-3S9 3.34 9 5v6c0 1.66 1.34 3 3 3z" />
+                        <path
+                            d="M17 11c0 2.76-2.24 5-5 5s-5-2.24-5-5H5c0 3.53 2.61 6.43 6 6.92V21h2v-3.08c3.39-.49 6-3.39 6-6.92h-2z" />
+                    </svg>
+                    <span id="mainBtnText" class="text-white text-sm font-medium">开录</span>
+                </div>
+            </button>
+
+            <!-- 右按钮 -->
+            <button id="rightBtn" class="glass rounded-full p-6 glass-hover" aria-label="个人信息">
+                <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                    <path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2" />
+                    <circle cx="12" cy="7" r="4" />
+                </svg>
+            </button>
+        </div>
+
+    </div>
+
+    <!-- 确认弹窗 -->
+    <div id="confirmModal"
+        class="hidden fixed inset-0 bg-black bg-opacity-30 flex items-center justify-center px-8 z-50">
+        <div class="modal-content glass rounded-3xl p-8 max-w-sm w-full">
+            <p class="text-white text-lg text-center mb-6">是否结束本次记录</p>
+            <div class="flex gap-4">
+                <button id="confirmNo"
+                    class="flex-1 glass rounded-full py-3 text-white font-medium glass-hover">否</button>
+                <button id="confirmYes"
+                    class="flex-1 glass rounded-full py-3 text-white font-medium glass-hover">是</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 归档反馈弹窗 -->
+    <div id="archiveModal"
+        class="hidden fixed inset-0 bg-black bg-opacity-30 flex items-center justify-center px-8 z-50">
+        <div class="modal-content glass rounded-3xl p-8 max-w-md w-full">
+            <div class="text-white text-lg opacity-80 text-justify mb-6 leading-relaxed" id="archiveSummary">
+                今天的记录主要讨论了工作进展和心情状态，提到了与小丽和小芳的互动，记录了一些关于职场和友情的感受。
+            </div>
+            <div class="flex justify-between items-center text-white text-sm opacity-80">
+                <span id="archiveDate">记录 2025-12-28 已生成</span>
+                <span id="archiveTags">关于 职场｜友情｜心情</span>
+            </div>
+            <button id="closeArchive"
+                class="mt-6 w-full glass rounded-full py-3 text-white font-medium glass-hover">关闭</button>
+        </div>
+    </div>
+
+    <script src="main.js"></script>
+    <script src="archive.js"></script>
+    <script src="profile.js"></script>
+</body>
+
+</html>
