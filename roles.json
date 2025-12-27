@@ -1,0 +1,30 @@
+{
+  "41a7bcfc-286d-403c-8355-f0c5e63b0930": {
+    "role_id": "41a7bcfc-286d-403c-8355-f0c5e63b0930",
+    "name": "武则天",
+    "gender": "Female",
+    "nickname": null,
+    "context_summary": ""
+  },
+  "09ef0345-a6a8-43f5-98c8-26212f3c6d2f": {
+    "role_id": "09ef0345-a6a8-43f5-98c8-26212f3c6d2f",
+    "name": "小明",
+    "gender": "Male",
+    "nickname": null,
+    "context_summary": ""
+  },
+  "21c7cef4-ecfa-4a26-9884-6628fa6ef6bf": {
+    "role_id": "21c7cef4-ecfa-4a26-9884-6628fa6ef6bf",
+    "name": "TestRole",
+    "gender": "Female",
+    "nickname": null,
+    "context_summary": ""
+  },
+  "92de17f2-342c-4db8-b86e-3cb6c054610e": {
+    "role_id": "92de17f2-342c-4db8-b86e-3cb6c054610e",
+    "name": "NewRole",
+    "gender": "Male",
+    "nickname": null,
+    "context_summary": ""
+  }
+}

@@ -1,0 +1,404 @@
+{
+  "c51fa78a-62bb-4dbc-8cd9-c1849abbd1dc": {
+    "entry_id": "c51fa78a-62bb-4dbc-8cd9-c1849abbd1dc",
+    "role_id": "1e90d867-9946-4177-8393-47ead463d575",
+    "original_input": "小明来了。他很开心。",
+    "modified_text": "小明来了。TA很开心。"
+  },
+  "1cae56a5-a733-466c-ba02-6c123dface00": {
+    "entry_id": "1cae56a5-a733-466c-ba02-6c123dface00",
+    "role_id": "1e90d867-9946-4177-8393-47ead463d575",
+    "original_input": "小明来了。他走了。",
+    "modified_text": "小明来了。TA走了。"
+  },
+  "b23ab9d7-d2f1-48c5-a738-e3926b3adcf6": {
+    "entry_id": "b23ab9d7-d2f1-48c5-a738-e3926b3adcf6",
+    "role_id": "1e90d867-9946-4177-8393-47ead463d575",
+    "original_input": "小明遇见了小红，他很开心。",
+    "modified_text": "小明遇见了小红，她很开心。"
+  },
+  "7f1b9bb3-347a-499e-9d59-744624df1370": {
+    "entry_id": "7f1b9bb3-347a-499e-9d59-744624df1370",
+    "role_id": "1e90d867-9946-4177-8393-47ead463d575",
+    "original_input": "他不知道是谁。",
+    "modified_text": "TA不知道是谁。"
+  },
+  "f0232e9a-ee44-44c4-acc0-983e9d19fcd6": {
+    "entry_id": "f0232e9a-ee44-44c4-acc0-983e9d19fcd6",
+    "role_id": "1e90d867-9946-4177-8393-47ead463d575",
+    "original_input": "明明笑了，ta很高兴。",
+    "modified_text": "明明笑了，他很高兴。"
+  },
+  "d736be58-164a-460d-ba10-6fabdf76ff6c": {
+    "entry_id": "d736be58-164a-460d-ba10-6fabdf76ff6c",
+    "role_id": "1e90d867-9946-4177-8393-47ead463d575",
+    "original_input": "她是一个黑客松选手，她正在写代码。",
+    "modified_text": "TA是一个黑客松选手，TA正在写代码。"
+  },
+  "74729a8f-5365-4d20-a1b1-c5c37dda316e": {
+    "entry_id": "74729a8f-5365-4d20-a1b1-c5c37dda316e",
+    "role_id": "d115dae9-7d20-496a-bbec-a1a8170dbda5",
+    "original_input": "张三是一个黑客松选手，他正在写代码。小杨和小红也在写代码，他们焦头烂额；小红他很开心，小明他很开心，小杨他也很开心",
+    "modified_text": "张三是一个黑客松选手，TA正在写代码。小杨和小红也在写代码，她们焦头烂额；小红她很开心，小明他很开心，小杨他也很开心"
+  },
+  "086dc1da-5544-468d-864a-ad163b84480a": {
+    "entry_id": "086dc1da-5544-468d-864a-ad163b84480a",
+    "role_id": "d115dae9-7d20-496a-bbec-a1a8170dbda5",
+    "original_input": "张三是一个黑客松选手，他正在写代码。小杨和小红也在写代码，他们焦头烂额；小红他很开心，小明他很开心，小杨他也很开心",
+    "modified_text": "张三是一个黑客松选手，TA正在写代码。小杨和小红也在写代码，她们焦头烂额；小红她很开心，小明他很开心，小杨他也很开心"
+  },
+  "f7549c35-b804-4b4c-b2a1-848336264a44": {
+    "entry_id": "f7549c35-b804-4b4c-b2a1-848336264a44",
+    "role_id": "d115dae9-7d20-496a-bbec-a1a8170dbda5",
+    "original_input": "张三是一个黑客松选手，他正在写代码。小杨和小红也在写代码，他们焦头烂额；小红他很开心，小明他很开心，小杨他也很开心",
+    "modified_text": "张三是一个黑客松选手，TA正在写代码。小杨和小红也在写代码，她们焦头烂额；小红她很开心，小明他很开心，小杨他也很开心"
+  },
+  "f6246752-c3c8-4b78-b2d4-69537407c926": {
+    "entry_id": "f6246752-c3c8-4b78-b2d4-69537407c926",
+    "role_id": "d115dae9-7d20-496a-bbec-a1a8170dbda5",
+    "original_input": "张三是一个黑客松选手，他正在写代码。小杨和小红也在写代码，他们焦头烂额；小红他很开心，小明他很开心，小杨他也很开心",
+    "modified_text": "张三是一个黑客松选手，TA正在写代码。小杨和小红也在写代码，他们焦头烂额；小红她很开心，小明他很开心，小杨他也很开心"
+  },
+  "41117d2f-ba72-4c85-bf17-a49fd52e5c0e": {
+    "entry_id": "41117d2f-ba72-4c85-bf17-a49fd52e5c0e",
+    "role_id": "d115dae9-7d20-496a-bbec-a1a8170dbda5",
+    "original_input": "张三是一个黑客松选手，他正在写代码。小杨和小红也在写代码，他们焦头烂额；小红他很开心，小明他很开心，小杨他也很开心",
+    "modified_text": "张三是一个黑客松选手，TA正在写代码。小杨和小红也在写代码，他们焦头烂额；小红她很开心，小明他很开心，小杨他也很开心"
+  },
+  "ba4faf91-c9a6-42da-9785-a9aa0059719e": {
+    "entry_id": "ba4faf91-c9a6-42da-9785-a9aa0059719e",
+    "role_id": "d115dae9-7d20-496a-bbec-a1a8170dbda5",
+    "original_input": "张三是一个黑客松选手，他正在写代码。小杨和小红也在写代码，他们焦头烂额；小红他很开心，小明他很开心，小杨他也很开心",
+    "modified_text": "张三是一个黑客松选手，TA正在写代码。小杨和小红也在写代码，他们焦头烂额；小红她很开心，小明他很开心，小杨他也很开心"
+  },
+  "e8f1a44c-7e3f-4d82-a575-57dbf42c2ff2": {
+    "entry_id": "e8f1a44c-7e3f-4d82-a575-57dbf42c2ff2",
+    "role_id": "d115dae9-7d20-496a-bbec-a1a8170dbda5",
+    "original_input": "张三是一个黑客松选手，他正在写代码。小杨和小红也在写代码，他们焦头烂额；小红他很开心，小明他很开心，小杨他也很开心",
+    "modified_text": "张三是一个黑客松选手，TA正在写代码。小杨和小红也在写代码，他们焦头烂额；小红她很开心，小明他很开心，小杨他也很开心"
+  },
+  "9d12540e-cb06-4fde-951a-f5d1b1556f51": {
+    "entry_id": "9d12540e-cb06-4fde-951a-f5d1b1556f51",
+    "role_id": "d115dae9-7d20-496a-bbec-a1a8170dbda5",
+    "original_input": "张三是一个黑客松选手，他正在写代码。小杨和小红也在写代码，他们焦头烂额；小红他很开心，小明他很开心，小杨他也很开心",
+    "modified_text": "张三是一个黑客松选手，TA正在写代码。小杨和小红也在写代码，他们焦头烂额；小红她很开心，小明他很开心，小杨他也很开心"
+  },
+  "aaffc0b4-6b2d-4780-a79c-41c19d24da83": {
+    "entry_id": "aaffc0b4-6b2d-4780-a79c-41c19d24da83",
+    "role_id": "d115dae9-7d20-496a-bbec-a1a8170dbda5",
+    "original_input": "张三是一个黑客松选手，他正在写代码。小杨和小红也在写代码，他们焦头烂额；小红他很开心，小明他很开心，小杨他也很开心",
+    "modified_text": "张三是一个黑客松选手，TA正在写代码。小杨和小红也在写代码，他们焦头烂额；小红她很开心，小明他很开心，小杨他也很开心"
+  },
+  "c15dabfb-dbd8-4098-a180-a4a97e0e1f77": {
+    "entry_id": "c15dabfb-dbd8-4098-a180-a4a97e0e1f77",
+    "role_id": "d115dae9-7d20-496a-bbec-a1a8170dbda5",
+    "original_input": "张三是一个黑客松选手，他正在写代码。小杨和小红也在写代码，他们焦头烂额；小红他很开心，小明他很开心，小杨他也很开心",
+    "modified_text": "张三是一个黑客松选手，TA正在写代码。小杨和小红也在写代码，TA们焦头烂额；小红她很开心，小明他很开心，小杨他也很开心"
+  },
+  "3a203a02-c8cf-433e-9f93-1692e2fbca6c": {
+    "entry_id": "3a203a02-c8cf-433e-9f93-1692e2fbca6c",
+    "role_id": "1e90d867-9946-4177-8393-47ead463d575",
+    "original_input": "小杨他也很开心",
+    "modified_text": "小杨TA也很开心"
+  },
+  "c334bc74-d884-4408-863c-8e9c8669738d": {
+    "entry_id": "c334bc74-d884-4408-863c-8e9c8669738d",
+    "role_id": "2b69f445-30cc-43f1-901d-61623d3765bd",
+    "original_input": "张三是一个黑客松选手，他正在写代码。",
+    "modified_text": "张三是一个黑客松选手，TA正在写代码。"
+  },
+  "8048237e-e492-443f-9c0e-6650ab5b48e1": {
+    "entry_id": "8048237e-e492-443f-9c0e-6650ab5b48e1",
+    "role_id": "1ce6282f-dbba-444e-866a-8fd5dd7cbd20",
+    "original_input": "张三是一个黑客松选手，他正在写代码。",
+    "modified_text": "张三是一个黑客松选手，TA正在写代码。"
+  },
+  "0a337fdf-3f83-4f29-a278-02e8cb1e2fd9": {
+    "entry_id": "0a337fdf-3f83-4f29-a278-02e8cb1e2fd9",
+    "role_id": "4a560ee8-44ed-456b-9cda-1d9bb41aec76",
+    "original_input": "历史人物武则天，他是中国历史上唯一的女皇帝。",
+    "modified_text": "历史人物武则天，她是中国历史上唯一的女皇帝。"
+  },
+  "e0d07b40-fa9b-40f9-9f88-fed24488dced": {
+    "entry_id": "e0d07b40-fa9b-40f9-9f88-fed24488dced",
+    "role_id": "41a7bcfc-286d-403c-8355-f0c5e63b0930",
+    "original_input": "历史人物武则天，他是中国历史上唯一的女皇帝。",
+    "modified_text": "历史人物武则天，她是中国历史上唯一的女皇帝。"
+  },
+  "66c7c078-49d4-40e5-855f-de4b10847089": {
+    "entry_id": "66c7c078-49d4-40e5-855f-de4b10847089",
+    "role_id": "41a7bcfc-286d-403c-8355-f0c5e63b0930",
+    "original_input": "小杨他也很开心",
+    "modified_text": "小杨TA也很开心"
+  },
+  "e243688b-b40d-440c-85d2-720bac89e53b": {
+    "entry_id": "e243688b-b40d-440c-85d2-720bac89e53b",
+    "role_id": "41a7bcfc-286d-403c-8355-f0c5e63b0930",
+    "original_input": "历史人物武则天，他是中国历史上唯一的女皇帝。",
+    "modified_text": "历史人物武则天，她是中国历史上唯一的女皇帝。"
+  },
+  "1fd9be99-8951-4db4-a25f-fac124957461": {
+    "entry_id": "1fd9be99-8951-4db4-a25f-fac124957461",
+    "role_id": "41a7bcfc-286d-403c-8355-f0c5e63b0930",
+    "original_input": "小杨他也很开心",
+    "modified_text": "小杨TA也很开心"
+  },
+  "d82ccb70-7f26-43cf-b084-7bb8213fa571": {
+    "entry_id": "d82ccb70-7f26-43cf-b084-7bb8213fa571",
+    "role_id": "41a7bcfc-286d-403c-8355-f0c5e63b0930",
+    "original_input": "历史人物武则天，他是中国历史上唯一的女皇帝。小红说他非常喜欢它",
+    "modified_text": "历史人物武则天，她是中国历史上唯一的女皇帝。小红说TA非常喜欢TA"
+  },
+  "5156a930-8827-4e94-bba2-9ce0e41a455e": {
+    "entry_id": "5156a930-8827-4e94-bba2-9ce0e41a455e",
+    "role_id": "41a7bcfc-286d-403c-8355-f0c5e63b0930",
+    "original_input": "小杨他也很开心",
+    "modified_text": "小杨TA也很开心"
+  },
+  "d2ba661c-fabe-492f-a427-df5e5eace9ea": {
+    "entry_id": "d2ba661c-fabe-492f-a427-df5e5eace9ea",
+    "role_id": "41a7bcfc-286d-403c-8355-f0c5e63b0930",
+    "original_input": "历史人物武则天，他是中国历史上唯一的女皇帝。小红说他非常喜欢它",
+    "modified_text": "历史人物武则天，她是中国历史上唯一的女皇帝。小红说TA非常喜欢TA"
+  },
+  "2e2a863b-ad76-4b61-b321-62516ea58066": {
+    "entry_id": "2e2a863b-ad76-4b61-b321-62516ea58066",
+    "role_id": "41a7bcfc-286d-403c-8355-f0c5e63b0930",
+    "original_input": "小杨他也很开心",
+    "modified_text": "小杨TA也很开心"
+  },
+  "c8b742b6-4836-4fa5-8467-4cb8faa2faf4": {
+    "entry_id": "c8b742b6-4836-4fa5-8467-4cb8faa2faf4",
+    "role_id": "41a7bcfc-286d-403c-8355-f0c5e63b0930",
+    "original_input": "历史人物武则天，他是中国历史上唯一的女皇帝。小红说他非常喜欢它",
+    "modified_text": "历史人物武则天，她是中国历史上唯一的女皇帝。小红说TA非常喜欢TA"
+  },
+  "e91f294f-cc53-40c7-b5c8-551fd196180c": {
+    "entry_id": "e91f294f-cc53-40c7-b5c8-551fd196180c",
+    "role_id": "41a7bcfc-286d-403c-8355-f0c5e63b0930",
+    "original_input": "小杨他也很开心",
+    "modified_text": "小杨TA也很开心"
+  },
+  "8a002b7f-fe3e-44bd-9eb2-0b8e0fae97cc": {
+    "entry_id": "8a002b7f-fe3e-44bd-9eb2-0b8e0fae97cc",
+    "role_id": "41a7bcfc-286d-403c-8355-f0c5e63b0930",
+    "original_input": "历史人物武则天，他是中国历史上唯一的女皇帝。小红说他非常喜欢它",
+    "modified_text": "历史人物武则天，她是中国历史上唯一的女皇帝。小红说TA非常喜欢TA"
+  },
+  "21e995fa-6f6f-420f-847a-62d403fef1f1": {
+    "entry_id": "21e995fa-6f6f-420f-847a-62d403fef1f1",
+    "role_id": "41a7bcfc-286d-403c-8355-f0c5e63b0930",
+    "original_input": "小杨他也很开心",
+    "modified_text": "小杨TA也很开心"
+  },
+  "4016fc59-5a0d-4c56-90ff-53da55189101": {
+    "entry_id": "4016fc59-5a0d-4c56-90ff-53da55189101",
+    "role_id": "41a7bcfc-286d-403c-8355-f0c5e63b0930",
+    "original_input": "历史人物武则天，他是中国历史上唯一的女皇帝。小红说他非常喜欢它",
+    "modified_text": "历史人物武则天，她是中国历史上唯一的女皇帝。小红说TA非常喜欢TA"
+  },
+  "34720dd6-cfde-48fc-9766-a1fa200262b5": {
+    "entry_id": "34720dd6-cfde-48fc-9766-a1fa200262b5",
+    "role_id": "41a7bcfc-286d-403c-8355-f0c5e63b0930",
+    "original_input": "小杨他也很开心",
+    "modified_text": "小杨TA也很开心"
+  },
+  "21cb49c5-b1ca-4293-8ea6-cf9dd6455323": {
+    "entry_id": "21cb49c5-b1ca-4293-8ea6-cf9dd6455323",
+    "role_id": "41a7bcfc-286d-403c-8355-f0c5e63b0930",
+    "original_input": "小杨他也很开心",
+    "modified_text": "小杨TA也很开心"
+  },
+  "3307ab76-a2f7-4ce2-88dd-d494c2c5eb7c": {
+    "entry_id": "3307ab76-a2f7-4ce2-88dd-d494c2c5eb7c",
+    "role_id": "41a7bcfc-286d-403c-8355-f0c5e63b0930",
+    "original_input": "小杨他也很开心",
+    "modified_text": "小杨TA也很开心"
+  },
+  "fb14f599-80df-427c-82c1-8a5aaa757cac": {
+    "entry_id": "fb14f599-80df-427c-82c1-8a5aaa757cac",
+    "role_id": "41a7bcfc-286d-403c-8355-f0c5e63b0930",
+    "original_input": "小杨他也很开心",
+    "modified_text": "小杨TA也很开心"
+  },
+  "8f5c2424-b440-455a-8f7e-e1eb6b587870": {
+    "entry_id": "8f5c2424-b440-455a-8f7e-e1eb6b587870",
+    "role_id": "41a7bcfc-286d-403c-8355-f0c5e63b0930",
+    "original_input": "小杨他也很开心",
+    "modified_text": "小杨TA也很开心"
+  },
+  "d695ffbb-b199-4194-b681-6c12a1d3e06f": {
+    "entry_id": "d695ffbb-b199-4194-b681-6c12a1d3e06f",
+    "role_id": "41a7bcfc-286d-403c-8355-f0c5e63b0930",
+    "original_input": "历史人物武则天，他是中国历史上唯一的女皇帝。小红说他非常喜欢它",
+    "modified_text": "历史人物武则天，她是中国历史上唯一的女皇帝。小红说TA非常喜欢TA"
+  },
+  "75c5f1f3-be99-4aec-8a6c-d676bf614348": {
+    "entry_id": "75c5f1f3-be99-4aec-8a6c-d676bf614348",
+    "role_id": "41a7bcfc-286d-403c-8355-f0c5e63b0930",
+    "original_input": "小杨他也很开心",
+    "modified_text": "小杨TA也很开心"
+  },
+  "cc87fbac-3b04-442c-8cae-a894d78ce222": {
+    "entry_id": "cc87fbac-3b04-442c-8cae-a894d78ce222",
+    "role_id": "41a7bcfc-286d-403c-8355-f0c5e63b0930",
+    "original_input": "历史人物武则天，他是中国历史上唯一的女皇帝。小红说他非常喜欢它",
+    "modified_text": "历史人物武则天，她是中国历史上唯一的女皇帝。小红说TA非常喜欢TA"
+  },
+  "f9ae82f7-c4d9-41d0-98ed-bad9b4fa07a3": {
+    "entry_id": "f9ae82f7-c4d9-41d0-98ed-bad9b4fa07a3",
+    "role_id": "41a7bcfc-286d-403c-8355-f0c5e63b0930",
+    "original_input": "小明今天很开心，TA去公园了。",
+    "modified_text": "小明今天很开心，他去公园了。"
+  },
+  "d91a6259-2d94-4550-acbc-8b23905bc46f": {
+    "entry_id": "d91a6259-2d94-4550-acbc-8b23905bc46f",
+    "role_id": "41a7bcfc-286d-403c-8355-f0c5e63b0930",
+    "original_input": "小明今天很开心，TA去公园了。",
+    "modified_text": "小明今天很开心，他去公园了。"
+  },
+  "169b20e7-bbf1-401e-aca3-1353bc535590": {
+    "entry_id": "169b20e7-bbf1-401e-aca3-1353bc535590",
+    "role_id": "41a7bcfc-286d-403c-8355-f0c5e63b0930",
+    "original_input": "小杨他也很开心",
+    "modified_text": "小杨TA也很开心"
+  },
+  "4cba3f4f-6da5-44d9-9e73-cccf9c00bee1": {
+    "entry_id": "4cba3f4f-6da5-44d9-9e73-cccf9c00bee1",
+    "role_id": "41a7bcfc-286d-403c-8355-f0c5e63b0930",
+    "original_input": "历史人物武则天，他是中国历史上唯一的女皇帝。小红说他非常喜欢它",
+    "modified_text": "历史人物武则天，她是中国历史上唯一的女皇帝。小红说她非常喜欢TA"
+  },
+  "99228e90-51d2-483a-975d-20cfc056aef6": {
+    "entry_id": "99228e90-51d2-483a-975d-20cfc056aef6",
+    "role_id": "41a7bcfc-286d-403c-8355-f0c5e63b0930",
+    "original_input": "小杨他也很开心",
+    "modified_text": "小杨TA也很开心"
+  },
+  "f5df73e8-3958-4d7a-bf62-558446ccc418": {
+    "entry_id": "f5df73e8-3958-4d7a-bf62-558446ccc418",
+    "role_id": "41a7bcfc-286d-403c-8355-f0c5e63b0930",
+    "original_input": "历史人物武则天，他是中国历史上唯一的女皇帝。小红说他非常喜欢它",
+    "modified_text": "历史人物武则天，他是中国历史上唯一的女皇帝。小红说他非常喜欢TA"
+  },
+  "afbb2cc6-23e2-4ab7-8aa5-628f88b488b1": {
+    "entry_id": "afbb2cc6-23e2-4ab7-8aa5-628f88b488b1",
+    "role_id": "41a7bcfc-286d-403c-8355-f0c5e63b0930",
+    "original_input": "小明今天很高兴，TA要去游泳。",
+    "modified_text": "小明今天很高兴，他要去游泳。"
+  },
+  "f67dc480-b94b-4333-ae1b-7439c340492e": {
+    "entry_id": "f67dc480-b94b-4333-ae1b-7439c340492e",
+    "role_id": "41a7bcfc-286d-403c-8355-f0c5e63b0930",
+    "original_input": "小杨他也很开心",
+    "modified_text": "小杨TA也很开心"
+  },
+  "915e6bb6-79ea-4626-a5e7-f02cc2b1d417": {
+    "entry_id": "915e6bb6-79ea-4626-a5e7-f02cc2b1d417",
+    "role_id": "41a7bcfc-286d-403c-8355-f0c5e63b0930",
+    "original_input": "小明今天很高兴，TA要去游泳。",
+    "modified_text": "小明今天很高兴，他要去游泳。"
+  },
+  "c1b30df4-6e79-4a71-ad66-aea5e46e8f8c": {
+    "entry_id": "c1b30df4-6e79-4a71-ad66-aea5e46e8f8c",
+    "role_id": "41a7bcfc-286d-403c-8355-f0c5e63b0930",
+    "original_input": "TA今天很开心。",
+    "modified_text": "小红今天很开心，她去公园了。"
+  },
+  "9980bdf9-c02e-40fb-aaa6-951717cec2b9": {
+    "entry_id": "9980bdf9-c02e-40fb-aaa6-951717cec2b9",
+    "role_id": "41a7bcfc-286d-403c-8355-f0c5e63b0930",
+    "original_input": "小杨他也很开心",
+    "modified_text": "小杨TA也很开心"
+  },
+  "0d391e27-04d0-40b7-9161-f5eabda516b9": {
+    "entry_id": "0d391e27-04d0-40b7-9161-f5eabda516b9",
+    "role_id": "41a7bcfc-286d-403c-8355-f0c5e63b0930",
+    "original_input": "小明今天很高兴，TA要去游泳。",
+    "modified_text": "小明今天很高兴，他要去游泳。"
+  },
+  "c4b84fe0-fffc-4443-a52e-4266b10566ce": {
+    "entry_id": "c4b84fe0-fffc-4443-a52e-4266b10566ce",
+    "role_id": "41a7bcfc-286d-403c-8355-f0c5e63b0930",
+    "original_input": "小杨他也很开心",
+    "modified_text": "小杨TA也很开心"
+  },
+  "04b12a13-a040-4e41-9b1a-d31b2cb2c331": {
+    "entry_id": "04b12a13-a040-4e41-9b1a-d31b2cb2c331",
+    "role_id": "41a7bcfc-286d-403c-8355-f0c5e63b0930",
+    "original_input": "小明今天很高兴，TA要去游泳。",
+    "modified_text": "小明今天很高兴，他要去游泳。"
+  },
+  "5a83f818-7d76-49b2-889f-ea4f4f9cf4e3": {
+    "entry_id": "5a83f818-7d76-49b2-889f-ea4f4f9cf4e3",
+    "role_id": "41a7bcfc-286d-403c-8355-f0c5e63b0930",
+    "original_input": "小杨他也很开心",
+    "modified_text": "小杨TA也很开心"
+  },
+  "6c36520f-774f-4527-be1a-12bd30662c18": {
+    "entry_id": "6c36520f-774f-4527-be1a-12bd30662c18",
+    "role_id": "41a7bcfc-286d-403c-8355-f0c5e63b0930",
+    "original_input": "小明今天很高兴，TA要去游泳。",
+    "modified_text": "小明今天很高兴，他要去游泳。"
+  },
+  "049703a2-a95c-4cab-a4a3-ae7eb9507d3e": {
+    "entry_id": "049703a2-a95c-4cab-a4a3-ae7eb9507d3e",
+    "role_id": "41a7bcfc-286d-403c-8355-f0c5e63b0930",
+    "original_input": "小杨他也很开心",
+    "modified_text": "小杨TA也很开心"
+  },
+  "7a1805bd-fcaa-4d40-8a5d-4653e12529f6": {
+    "entry_id": "7a1805bd-fcaa-4d40-8a5d-4653e12529f6",
+    "role_id": "41a7bcfc-286d-403c-8355-f0c5e63b0930",
+    "original_input": "小明今天很高兴，TA要去游泳。",
+    "modified_text": "小明今天很高兴，他要去游泳。"
+  },
+  "031e15e2-7482-4566-884d-3f97b58fd222": {
+    "entry_id": "031e15e2-7482-4566-884d-3f97b58fd222",
+    "role_id": "41a7bcfc-286d-403c-8355-f0c5e63b0930",
+    "original_input": "TA今天很开心。",
+    "modified_text": "小明今天很开心，他去公园了。"
+  },
+  "dc69ec7e-732a-4dfb-ae10-5d533b078742": {
+    "entry_id": "dc69ec7e-732a-4dfb-ae10-5d533b078742",
+    "role_id": "41a7bcfc-286d-403c-8355-f0c5e63b0930",
+    "original_input": "TA今天很开心。",
+    "modified_text": "小明今天很开心，他去公园了。"
+  },
+  "1fe0998b-68b5-4e78-a4c6-d46adf658c94": {
+    "entry_id": "1fe0998b-68b5-4e78-a4c6-d46adf658c94",
+    "role_id": "09ef0345-a6a8-43f5-98c8-26212f3c6d2f",
+    "original_input": "TA今天很开心。",
+    "modified_text": "小明今天很开心，他去公园了。"
+  },
+  "83a5f112-6943-4fb2-b667-6ce9ed89ee4a": {
+    "entry_id": "83a5f112-6943-4fb2-b667-6ce9ed89ee4a",
+    "role_id": "41a7bcfc-286d-403c-8355-f0c5e63b0930",
+    "original_input": "小杨他也很开心",
+    "modified_text": "小杨TA也很开心"
+  },
+  "762dd4ce-7c90-473a-9070-a421275b95c6": {
+    "entry_id": "762dd4ce-7c90-473a-9070-a421275b95c6",
+    "role_id": "09ef0345-a6a8-43f5-98c8-26212f3c6d2f",
+    "original_input": "小明今天很高兴，TA要去游泳。",
+    "modified_text": "小明今天很高兴，Male要去游泳。"
+  },
+  "3d79da41-82d7-4623-9ba2-50a84d6429f0": {
+    "entry_id": "3d79da41-82d7-4623-9ba2-50a84d6429f0",
+    "role_id": "41a7bcfc-286d-403c-8355-f0c5e63b0930",
+    "original_input": "小杨他也很开心",
+    "modified_text": "小杨TA也很开心"
+  },
+  "846004e1-64aa-4d66-aa47-c4994a941275": {
+    "entry_id": "846004e1-64aa-4d66-aa47-c4994a941275",
+    "role_id": "09ef0345-a6a8-43f5-98c8-26212f3c6d2f",
+    "original_input": "小明今天很高兴，TA要去游泳。",
+    "modified_text": "小明今天很高兴，他要去游泳。"
+  },
+  "fe9207fd-7342-4326-a71e-30c939df8c67": {
+    "entry_id": "fe9207fd-7342-4326-a71e-30c939df8c67",
+    "role_id": "92de17f2-342c-4db8-b86e-3cb6c054610e",
+    "original_input": "Original Text",
+    "modified_text": "Direct Update Text"
+  }
+}
