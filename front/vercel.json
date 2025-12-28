@@ -3,7 +3,8 @@
   "outputDirectory": ".",
   "git": {
     "deploymentEnabled": {
-      "main": true
+      "main": true,
+      "running": true
     }
   },
   "ignoreCommand": "exit 1"
