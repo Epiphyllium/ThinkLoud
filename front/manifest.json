@@ -1,0 +1,20 @@
+{
+  "name": "ThinkLoud",
+  "short_name": "ThinkLoud",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#4BA5FF",
+  "theme_color": "#4BA5FF",
+  "icons": [
+    {
+      "src": "logo.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "logo.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}

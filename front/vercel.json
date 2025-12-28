@@ -1,0 +1,5 @@
+{
+  "buildCommand": null,
+  "outputDirectory": ".",
+  "ignoreCommand": "git diff --quiet HEAD^ HEAD ./"
+}
