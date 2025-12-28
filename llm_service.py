@@ -5,7 +5,7 @@ from typing import Optional, Tuple, Dict, Any, List
 from prompts import GENDER_INFERENCE_PROMPT, PRONOUN_CORRECTION_PROMPT
 
 # Configuration
-OPENROUTER_API_KEY = "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"
+OPENROUTER_API_KEY = "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"
 OPENROUTER_URL = "https://openrouter.ai/api/v1/chat/completions"
 # Using Kimi k2 via OpenRouter as requested
 MODEL_NAME = "moonshotai/kimi-k2" 

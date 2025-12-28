@@ -1,7 +1,7 @@
 // Mocking DOM elements and globals if necessary, but here we just test the function logic
 // We need fetch. Node 18+ has global fetch.
 
-const OPENROUTER_API_KEY = "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";
+const OPENROUTER_API_KEY = "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";
 const OPENROUTER_URL = "https://openrouter.ai/api/v1/chat/completions";
 const MODEL_NAME = "moonshotai/kimi-k2";
 
@@ -42,6 +42,10 @@ const PRONOUN_CORRECTION_PROMPT_TEMPLATE = `
 `;
 
 async function correctPronounsWithLLM(text, roles) {
+    if (!OPENROUTER_API_KEY) {
+        console.error("Missing OPENROUTER_API_KEY");
+        return { modified_text: text, roles: [], error: true };
+    }
     // Format roles context
     let rolesContextStr = "- 无已知角色";
     if (roles && roles.length > 0) {
@@ -107,13 +111,13 @@ async function correctPronounsWithLLM(text, roles) {
 async function runTest() {
     const text = "小张是一个工程师 同时TA也是一个孩子的母亲";
     const roles = []; // 无已知角色
-    
+
     console.log("Testing correctPronounsWithLLM...");
     console.log("Input Text:", text);
     console.log("Input Roles:", roles);
-    
+
     const result = await correctPronounsWithLLM(text, roles);
-    
+
     console.log("\n--- Result ---");
     console.log(JSON.stringify(result, null, 2));
 }
