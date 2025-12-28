@@ -1,11 +1,5 @@
 {
   "buildCommand": null,
   "outputDirectory": ".",
-  "git": {
-    "deploymentEnabled": {
-      "main": true,
-      "running": true
-    }
-  },
   "ignoreCommand": "exit 1"
 }
